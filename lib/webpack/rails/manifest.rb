@@ -53,7 +53,7 @@ module Webpack
 
         def load_dev_server_manifest
           Net::HTTP.get(
-            "localhost",
+            ::Rails.configuration.webpack.dev_server.host,
             dev_server_path,
             ::Rails.configuration.webpack.dev_server.port
           )
@@ -79,7 +79,7 @@ module Webpack
         end
 
         def dev_server_url
-          "http://localhost:#{::Rails.configuration.webpack.dev_server.port}#{dev_server_path}"
+          "http://#{::Rails.configuration.webpack.dev_server.host}:#{::Rails.configuration.webpack.dev_server.port}#{dev_server_path}"
         end
       end
     end
